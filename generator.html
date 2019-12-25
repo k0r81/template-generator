@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generator</title>
+    <script src="parser.js"></script>
+    <style type="text/css">
+        body{
+            padding: 20px;
+        }
+        label {
+            display: grid;
+        }
+
+        #filename {
+            max-width: 300px;
+        }
+
+        .container {
+            display: grid;
+            grid-gap: 20px;
+        }
+
+        table,
+        label,
+        textarea {
+            width: 100%;
+        }
+        #reader-output,
+        #template-output{
+            max-height: 300px;
+            overflow-scrolling: auto;
+            overflow: auto;
+        }
+        .info{
+            border: 1px solid red;
+            padding: 20px;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .warning{
+            color:darkred;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Generator z template</h1>
+<div class="info"><p>Żeby użyć w template wartości z tabelki, która pojawi się po wczytaniu pliku, trzeba w klamerkach wpisac nazwę kolumny poprzedzoną znakiem $ np $imie </p>
+<p class="warning">Plik musi posiadać nagłówki</p></div>
+<div class="container">
+    <div class="row">
+        <label for="reader-input">Wczytaj plik</label>
+            <input type='file' id="reader-input" accept='.csv' onchange='readFile()'>
+    </div>
+<!--    <div class="row">-->
+<!--        <label for="isHeader">Plik ma nagłówki</label>-->
+<!--        <input type="checkbox" checked id="isHeader">-->
+<!--    </div>-->
+<!--    <div id="naglowki">-->
+
+<!--    </div>-->
+    <div class="row" id="reader-output">
+
+    </div>
+</div>
+<div class="container">
+<!--    <div class="row">-->
+<!--        <label for="filename">Nazwa pliku</label>-->
+<!--        <input id="filename" placeholder="Wpisz nazwe pliku np 'Łazanki'" type="text">-->
+<!--    </div>-->
+    <div class="row">
+        <label for="template-input">Wpisz templatke</label>
+        <textarea oninput="resetGeneratedText()" cols="100" id="template-input" rows="10">
+    </textarea>
+    </div>
+    <div class="row" id="template-output">
+
+    </div>
+    <div class="buttons">
+        <button id="download-button" onclick="download()">Pobierz</button>
+        <button id="generate-button" onclick="generate()">Generuj</button>
+    </div>
+    <div id="output">
+
+    </div>
+</div>
+</body>
+</html>
